@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: spring-server-hpa
+  labels:
+    app: spring-server
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: spring-server-deployment
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 30
+status:
+  currentMetrics: []
+  currentReplicas: 3
+  desiredReplicas: 0
+
+

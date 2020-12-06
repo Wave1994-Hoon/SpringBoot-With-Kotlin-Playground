@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-server-deployment
+  labels:
+    app: spring-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-server
+  template:
+    metadata:
+      labels:
+        app: spring-server
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: spring
+          image: kk03187693/rest-exam:0.7
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health/hello
+              port: api
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - cat
+                - /tmp/healthy
+            initialDelaySeconds: 1
+            periodSeconds: 10

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/springexam
+    url: jdbc:postgresql://localhost:5432/test_db
     username: kwanghoon.kim
     password: password
     driverClassName: org.postgresql.Driver
@@ -10,6 +10,7 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
         show_sql: true
+        format_sql: true
     hibernate:
       ddl-auto: update
       generate-ddl: true

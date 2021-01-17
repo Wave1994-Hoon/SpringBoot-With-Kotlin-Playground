@@ -87,8 +87,8 @@ dependencies {
 
     implementation 'org.jsoup:jsoup:1.10.3'
     compile "khttp:khttp:1.0.0"
-
-    compile('org.postgresql:postgresql:42.2.5')
+    runtimeOnly 'mysql:mysql-connector-java'
+//    compile('org.postgresql:postgresql:42.2.5')
 
     compile "org.json:json:20180813"
     compile "org.apache.commons:commons-lang3:3.6"

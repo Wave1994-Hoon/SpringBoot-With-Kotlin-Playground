@@ -1,19 +1,29 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/test_db
-    username: kwanghoon.kim
-    password: password
-    driverClassName: org.postgresql.Driver
+#    url: jdbc:mysql://localhost:3306/batch_test?profileSQL=true&logger=Slf4JLogger&maxQuerySizeToLog=999999&rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/batch_test?rewriteBatchedStatements=true
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
       hibernate:
+#        order_inserts: true
+#        order_updates: true
+#        jdbc:
+#          batch_size: 1000
         temp:
           use_jdbc_metadata_defaults: false
-        show_sql: true
-        format_sql: true
+#        show_sql: true
+        default_batch_fetch_size: 1000
+#        format_sql: true
     hibernate:
-      ddl-auto: update
+#      use-new-id-generator-mappings: false
+      ddl-auto: create
       generate-ddl: true
-      properties:
-      temp:
-        use_jdbc_metadata_defaults: false
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        jdbc: DEBUG

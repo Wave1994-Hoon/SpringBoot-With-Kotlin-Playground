@@ -10,9 +10,6 @@ import javax.persistence.PostUpdate
 @Component
 class UserListener {
 
-    @Autowired
-    private lateinit var userRepository: UserRepository
-
     @PostPersist
     fun postPersist(user: User) {
         println("===========================")

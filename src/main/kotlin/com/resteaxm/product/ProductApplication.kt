@@ -5,7 +5,6 @@ import com.resteaxm.product.Locker.LockerRepository
 import com.resteaxm.product.Member.MemberRepository
 import com.resteaxm.product.Team.TeamRepository
 import com.resteaxm.product.User.User
-import com.resteaxm.product.User.UserJdbcBatchRepository
 import com.resteaxm.product.User.UserRepository
 import khttp.delete
 import org.apache.commons.lang3.time.StopWatch
@@ -33,9 +32,9 @@ fun main(args: Array<String>) {
 @Component
 //@Transactional(readOnly = true)
 class StartTest {
-
-    @Autowired
-    private lateinit var userJdbcBatchRepository: UserJdbcBatchRepository
+//
+//    @Autowired
+//    private lateinit var userJdbcBatchRepository: UserJdbcBatchRepository
 
     @Autowired
     private lateinit var userRepository: UserRepository
@@ -48,20 +47,16 @@ class StartTest {
 
     @EventListener
     fun onApplicationEvent(event: ApplicationStartedEvent) {
+        val user1 = User(name = "user1")
+        val user2 = User(name = "user2")
+        val user3 = User(name = "user3")
 
-        val users: MutableList<User> = mutableListOf();
+        userRepository.save(user1)
+        userRepository.save(user2)
+        userRepository.save(user3)
 
-        for (i in 1..3) {
-            users.add(User(name = i.toString()))
-//            userRepository.save(User(name = i.toString()))
-        }
-        userRepository.save(User(name = "aaaa"))
-
-//        userRepository.saveAll(users)
-        userJdbcBatchRepository.batchInsert1(users)
-
-
-//        val findUsers: List<User> = userRepository.findByTag("A")
-//        userJdbcBatchRepository.batchDelete(findUsers as MutableList<User>)
+        val user = userRepository.findById(1L).orElseThrow { throw Exception("") }
+        user.name = "test"
+        userRepository.save(user)
     }
 }

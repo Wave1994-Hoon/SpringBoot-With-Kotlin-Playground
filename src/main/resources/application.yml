@@ -1,7 +1,8 @@
 spring:
   datasource:
 #    url: jdbc:mysql://localhost:3306/batch_test?profileSQL=true&logger=Slf4JLogger&maxQuerySizeToLog=999999&rewriteBatchedStatements=true
-    url: jdbc:mysql://localhost:3306/batch_test?rewriteBatchedStatements=true
+#    url: jdbc:mysql://localhost:3306/batch_test?rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/batch_test
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
